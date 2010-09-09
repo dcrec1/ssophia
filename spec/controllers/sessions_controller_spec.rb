@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe Devise::SessionsController do
+describe SessionsController do
   include Devise::TestHelpers
 
   context "with a logged user" do
