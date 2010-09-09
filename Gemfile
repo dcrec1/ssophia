@@ -11,6 +11,9 @@ gem "devise", ">=1.1.2"
 gem "formtastic", ">=1.1.0"
 gem "friendly_id", "~>3.0"
 gem "compass", ">= 0.10.5"
+gem "uniquify", "0.1.0"
+
+
 gem "rspec", ">=2.0.0.beta.20", :group => :test
 gem "rspec-rails", ">=2.0.0.beta.20", :group => [:development, :test]
 gem "remarkable", ">=4.0.0.alpha4", :group => :test
