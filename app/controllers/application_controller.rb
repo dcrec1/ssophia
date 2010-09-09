@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
     session[:return_url] ||= params[:returnURL]
   end
 
-  def stored_location_for(resource_or_scope)
-    session[:return_url]
+  def after_sign_in_path_for(resource_or_scope)
+    session[:return_url] || params[:returnURL]
   end
 end
