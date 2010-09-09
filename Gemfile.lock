@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/dcrec1/uniquify.git
+  revision: 2a61852052c41c33ced5c7e55a482652a74c2a54
+  specs:
+    uniquify (0.1.0)
+
+GIT
   remote: git://github.com/indirect/rails3-generators.git
   revision: ad49c25
   specs:
@@ -156,7 +162,6 @@ GEM
       polyglot (>= 0.3.1)
     trollop (1.16.2)
     tzinfo (0.3.23)
-    uniquify (0.1.0)
     warden (0.10.7)
       rack (>= 1.0.0)
     will_paginate (3.0.pre2)
@@ -190,5 +195,5 @@ DEPENDENCIES
   rspec-rails (>= 2.0.0.beta.20)
   spork (>= 0.8.4)
   sqlite3-ruby
-  uniquify (= 0.1.0)
+  uniquify!
   will_paginate (>= 3.0.pre2)

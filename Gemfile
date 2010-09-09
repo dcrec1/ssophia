@@ -11,7 +11,7 @@ gem "devise", ">=1.1.2"
 gem "formtastic", ">=1.1.0"
 gem "friendly_id", "~>3.0"
 gem "compass", ">= 0.10.5"
-gem "uniquify", "0.1.0"
+gem "uniquify", :git => "git://github.com/dcrec1/uniquify.git"
 
 
 gem "rspec", ">=2.0.0.beta.20", :group => :test

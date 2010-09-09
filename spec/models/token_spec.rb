@@ -2,5 +2,8 @@ require 'spec_helper'
 
 describe Token do
   should_belong_to :user
-  should_validate_presence_of :value
+
+  it "should be created with an unique token" do
+    Token.create!.value.should_not eql(Token.create!.value)
+  end
 end
