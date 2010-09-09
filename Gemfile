@@ -13,6 +13,7 @@ gem "friendly_id", "~>3.0"
 gem "compass", ">= 0.10.5"
 gem "uniquify", :git => "git://github.com/dcrec1/uniquify.git"
 
+gem "metric_fu", ">=1.5.1", :group => :development
 
 gem "rspec", ">=2.0.0.beta.20", :group => :test
 gem "rspec-rails", ">=2.0.0.beta.20", :group => [:development, :test]
