@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/dcrec1/uniquify.git
-  revision: 2a61852052c41c33ced5c7e55a482652a74c2a54
+  revision: 2a61852
   specs:
     uniquify (0.1.0)
 
