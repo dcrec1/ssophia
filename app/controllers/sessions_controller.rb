@@ -8,6 +8,10 @@ class SessionsController < Devise::SessionsController
     "#{return_url}?token=#{token}"
   end
 
+  def after_sign_out_path_for(resource_or_scope)
+    params[:returnURL]
+  end
+
   private
 
   def token
