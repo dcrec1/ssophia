@@ -5,6 +5,16 @@ class SessionsController < Devise::SessionsController
   end
 
   def after_sign_in_path_for(resource_or_scope)
-    "#{session[:return_url]}?token=#{Token.create!(:user => current_user).value}"
+    "#{return_url}?token=#{token}"
+  end
+
+  private
+
+  def token
+    current_user.new_token_value
+  end
+
+  def return_url
+    session[:return_url]
   end
 end
