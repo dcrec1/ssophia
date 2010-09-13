@@ -12,4 +12,11 @@ describe Token do
     value = Factory(:token).value 
     Token.find(value).should_not be_nil
   end
+
+  describe "#to_json" do
+    it "should include the user data" do
+      token = Factory :token
+      token.to_json.should eql(token.to_json(:include => :user))
+    end
+  end
 end
