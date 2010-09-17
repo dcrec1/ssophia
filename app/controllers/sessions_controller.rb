@@ -9,7 +9,7 @@ class SessionsController < Devise::SessionsController
   end
 
   def after_sign_out_path_for(resource_or_scope)
-    params[:returnURL]
+    params[:returnURL] || root_path
   end
 
   private
