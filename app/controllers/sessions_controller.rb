@@ -5,7 +5,11 @@ class SessionsController < Devise::SessionsController
   end
 
   def after_sign_in_path_for(resource_or_scope)
-    "#{session_return_url}?token=#{token}"
+    if return_url = session_return_url
+      "#{return_url}?token=#{token}"
+    else
+      root_path
+    end
   end
 
   def after_sign_out_path_for(resource_or_scope)

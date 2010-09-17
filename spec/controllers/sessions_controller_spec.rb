@@ -16,9 +16,14 @@ describe SessionsController do
       sign_in user
     end
 
-    it "should redirect to the url specified by 'returnURL'" do
+    it "should redirect to the url specified by 'returnURL' if specified" do
       get :new, :returnURL => url
       response.headers['Location'].should be_start_with(url)
+    end
+
+    it "should redirect to the root path 'returnURL' was not specified" do
+      get :new
+      response.should redirect_to(root_path)
     end
 
     it "should include an users token as a query string parameter called 'token' when redirecting the user" do
