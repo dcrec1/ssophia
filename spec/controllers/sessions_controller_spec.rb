@@ -25,6 +25,12 @@ describe SessionsController do
       get :new, :returnURL => url
       Token.find(response.headers['Location'].gsub("#{url}?token=", '')).user.should eql(user)
     end
+
+    it "should use the returnURL only once" do
+      get :new, :returnURL => url
+      get :new
+      response.headers['Location'].should_not be_start_with(url)
+    end
   end
 
   context "on logout" do

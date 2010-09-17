@@ -23,6 +23,6 @@ class SessionsController < Devise::SessionsController
   end
 
   def session_return_url
-    session[:return_url]
+    session.delete :return_url
   end
 end
