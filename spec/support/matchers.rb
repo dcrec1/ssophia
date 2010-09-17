@@ -6,6 +6,13 @@ def should_have_an_slugged_id(name)
   end
 end
 
+def should_have_an_id(name)
+  it "should have the #{name} as an id" do
+    clazz = subject.class
+    clazz.find(Factory(clazz.to_s.underscore).send(name)).should_not be_nil
+  end
+end
+
 def should_require_authentication_on_private_actions
   include Devise::TestHelpers
 
