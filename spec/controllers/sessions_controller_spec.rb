@@ -9,6 +9,16 @@ describe SessionsController do
     controller.stub(:devise_mapping).and_return(Devise.mappings[:user])
   end
 
+  context "on GET show" do
+    context "with json format" do 
+      it "should render the session as json" do
+        session = Factory :session
+        get :show, :id => session.id, :format => 'json'
+        response.body.should eql(session.to_json)
+      end
+    end
+  end
+
   context "with a logged user" do
     let(:user) { Factory(:user) }
 

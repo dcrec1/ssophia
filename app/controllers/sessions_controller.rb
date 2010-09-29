@@ -1,4 +1,12 @@
 class SessionsController < Devise::SessionsController
+  respond_to :json
+
+  def show
+    respond_with Session.find(params[:id])
+  end
+
+  protected
+
   def require_no_authentication
     session[:return_url] ||= request_return_url
     super
@@ -15,8 +23,6 @@ class SessionsController < Devise::SessionsController
   def after_sign_out_path_for(resource_or_scope)
     params[:returnURL] || root_path
   end
-
-  private
 
   def token
     current_user.new_token_value
