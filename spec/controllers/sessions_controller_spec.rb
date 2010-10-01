@@ -48,7 +48,25 @@ describe SessionsController do
     end
   end
 
+  context "on login" do
+    let(:session_id) { "54334g34g4g3g34" }
+
+    before :each do
+      controller.stub(:cookies).and_return("_session_id" => session_id)
+    end
+
+    it "should create a session for the user" do
+      user = Factory :user
+      post :create, :user => { :email => user.email, :password => user.password }
+      Session.find(session_id).should_not be_nil
+    end
+  end
+
   context "on logout" do
+    before :each do
+      controller.stub(:cookies).and_return("_session_id" => Factory(:session).session_id)
+    end
+
     it "should redirect to the url specified by 'returnURL'" do
       get :destroy, :returnURL => url
       response.should redirect_to(url)
@@ -57,6 +75,23 @@ describe SessionsController do
     it "should reditect to the root path if the return url was not specified" do
       get :destroy
       response.should redirect_to(root_path)
+    end
+
+    it "should destroy the user session" do
+      get :destroy
+      Session.count.should == 0
+    end
+
+    it "should not destroy other user's session" do
+      session = Factory :session
+      get :destroy
+      Session.find(session.id).should_not be_nil
+    end
+
+    it "should ignore if the session doesnt exist" do
+      Session.destroy_all
+      get :destroy
+      controller.should_not be_user_signed_in
     end
   end
 end

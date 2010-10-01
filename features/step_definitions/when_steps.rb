@@ -2,7 +2,7 @@ When /^I visit "(.*)"$/ do |url|
   visit url
 end
 
-When /^I head my session$/ do
+When /^I request my session$/ do
   visit "/sessions/#{Session.last.session_id}.json"
 end
 

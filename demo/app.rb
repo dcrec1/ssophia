@@ -10,7 +10,7 @@ get '/' do
     true
   else
     url = "#{SSOPHIA_BASE_URL}/sessions/#{request.cookies["_session_id"]}.json"
-    RestClient.head(url).status == 200
+    RestClient.head(url).code == 200 rescue false
   end
   haml :index
 end
