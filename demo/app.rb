@@ -2,15 +2,20 @@ require 'rubygems'
 require 'sinatra'
 require 'haml'
 require 'rest_client'
+require 'crack'
 
 SSOPHIA_BASE_URL = "http://localhost:3000"
 
+def current_user
+  session[:user]
+end
+
 get '/' do
-  @logged = if params[:token]
-    true
-  else
-    not request.cookies['ssophia'].nil?
+  if params[:token]
+    json = RestClient.get "#{SSOPHIA_BASE_URL}/tokens/#{params[:token]}.json"
+    session[:user] = Crack::JSON.parse(json)['token']['user']
   end
+  @logged = current_user and not request.cookies['ssophia'].nil?
   haml :index
 end
 
