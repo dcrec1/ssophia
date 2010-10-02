@@ -9,14 +9,6 @@ class SessionsController < Devise::SessionsController
 
   protected
 
-  def create_cookie
-    cookies[:ssophia] = '94n73cv5p43c58mv934'
-  end
-
-  def destroy_cookie
-    cookies.delete :ssophia
-  end
-
   def require_no_authentication
     session[:return_url] ||= request_return_url
     super
@@ -34,6 +26,16 @@ class SessionsController < Devise::SessionsController
     params[:returnURL] || root_path
   end
 
+  private
+
+  def create_cookie
+    cookies[:ssophia] = random_string
+  end
+
+  def destroy_cookie
+    cookies.delete :ssophia
+  end
+
   def token
     current_user.new_token_value
   end
@@ -48,6 +50,10 @@ class SessionsController < Devise::SessionsController
 
   def session_return_url
     session.delete :return_url
+  end
+
+  def random_string
+    (0...8).map{65.+(rand(25)).chr}.join 
   end
 end
 

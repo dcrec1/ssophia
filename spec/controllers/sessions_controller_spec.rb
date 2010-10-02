@@ -49,10 +49,18 @@ describe SessionsController do
   end
 
   context "on login" do
+    let(:user) { user = Factory :user } 
+
     it "should create a ssophia cookie" do
-      user = Factory :user
       post :create, :user => { :email => user.email, :password => user.password }
       cookies['ssophia'].should_not be_nil
+    end
+
+    it "should create each time a different ssophia cookie" do
+      post :create, :user => { :email => user.email, :password => user.password }
+      cookie = cookies['ssophia']
+      post :create, :user => { :email => user.email, :password => user.password }
+      cookie.should_not eql(cookies['ssophia']) 
     end
   end
 
