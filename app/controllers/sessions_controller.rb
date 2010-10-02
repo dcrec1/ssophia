@@ -1,7 +1,7 @@
 class SessionsController < Devise::SessionsController
   respond_to :json
-  after_filter :create_session, :only => :create
-  after_filter :destroy_session, :only => :destroy
+  after_filter :create_cookie, :only => :create
+  after_filter :destroy_cookie, :only => :destroy
 
   def show
     respond_with Session.find(params[:id])
@@ -9,12 +9,12 @@ class SessionsController < Devise::SessionsController
 
   protected
 
-  def create_session
-    Session.create! :session_id => session_id
+  def create_cookie
+    cookies[:ssophia] = '94n73cv5p43c58mv934'
   end
 
-  def destroy_session
-    Session.destroy session_id rescue nil
+  def destroy_cookie
+    cookies.delete :ssophia
   end
 
   def require_no_authentication

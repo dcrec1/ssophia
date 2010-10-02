@@ -9,8 +9,7 @@ get '/' do
   @logged = if params[:token]
     true
   else
-    url = "#{SSOPHIA_BASE_URL}/sessions/#{request.cookies["_session_id"]}.json"
-    RestClient.head(url).code == 200 rescue false
+    not request.cookies['ssophia'].nil?
   end
   haml :index
 end
