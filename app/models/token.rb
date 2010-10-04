@@ -7,4 +7,8 @@ class Token < ActiveRecord::Base
   def to_json(params = {})
     super :include => :user
   end
+
+  def self.find(params)
+    super.destroy
+  end
 end

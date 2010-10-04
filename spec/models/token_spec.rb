@@ -13,6 +13,12 @@ describe Token do
     Token.find(value).should_not be_nil
   end
 
+  it "should be found by the value only once" do
+    value = Factory(:token).value
+    Token.find value
+    lambda { Token.find(value) }.should raise_exception
+  end
+
   describe "#to_json" do
     it "should include the user data" do
       token = Factory :token
