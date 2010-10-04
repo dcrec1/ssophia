@@ -1,5 +1,8 @@
-- if @logged
-  %a{:href => "/logout"} Logout
-  = "Your email is: #{current_user['email']}"
-- else
-  %a{:href => "/login"} Login
+!!! 5
+%html
+  %body
+    - if @logged
+      %a{:href => "/logout"} Logout
+      = "Your email is: #{current_user['email']}"
+    - else
+      %a{:href => "/login"} Login
