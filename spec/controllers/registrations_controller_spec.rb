@@ -23,5 +23,10 @@ describe RegistrationsController do
       post :create, :user => { :email => "fake@email.com", :password => user.password }
       cookie.should_not eql(cookies['ssophia']) 
     end
+
+    it "should reditect to the root path if the return url was not specified" do
+      post :create, :user => { :email => user.email, :password => user.password, :password_confirmation => user.password }
+      response.should redirect_to(root_path)
+    end
   end
 end

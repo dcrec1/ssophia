@@ -49,7 +49,7 @@ describe SessionsController do
   end
 
   context "on login" do
-    let(:user) { user = Factory :user } 
+    let(:user) { Factory :user } 
 
     it "should create a ssophia cookie" do
       post :create, :user => { :email => user.email, :password => user.password }
